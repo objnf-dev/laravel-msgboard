@@ -13,8 +13,7 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least eight characters and match the confirmation.',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that e-mail address.",
+    'password' => '密码应至少包含8个字符并符合标准。',
+    'user' => "找不到对应此电子邮件的账号。",
 
 ];
