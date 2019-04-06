@@ -23,6 +23,8 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.8.1",
+        "antd": "^3.16.1",
         "react": "^16.8.6",
         "reactjs": "^1.0.0"
     }
