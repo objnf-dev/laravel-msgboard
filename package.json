@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.8.1",
+        "admin-lte": "^2.4.10",
         "antd": "^3.16.1",
         "babel": "^6.23.0",
         "react": "^16.8.6",
