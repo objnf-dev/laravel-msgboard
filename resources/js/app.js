@@ -4,15 +4,29 @@ import Antd from 'ant-design-vue';
 import "ant-design-vue/dist/antd.css";
 Vue.use(Antd);
 
-//Vue.component('msg-board', require('./board.vue'));
-
+// 各部分组件化
 var SubmitButton = Vue.component('msg-submit-button',{
-    template:'<a-button type="primary" id="submit-button">发送</a-button>'
+    template: '<a-button type="primary" id="submit-button">发送</a-button>'
 });
 
+var MsgInputField = Vue.component('msg-input',{
+    template: '<a-textarea placeholder="写下你想说的话吧！" :rows="10"/>'
+});
+
+// Vue入口点
 new Vue({
     el: '#msg-board',
     components: {
-        'submit-button': SubmitButton
+        'submit-button': SubmitButton,
+        'msg-input': MsgInputField
+    },
+    data: {
+        MsgBoardStyle: {
+            'text-align': 'center',
+            'padding': '5% 10% 0 10%'
+        },
+        MsgSubmitButtonStyle: {
+            'margin': '5%'
+        }
     }
 });
