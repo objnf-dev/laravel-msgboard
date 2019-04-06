@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
-    <script>
 
-    </script>
+<div id='msg-board'>
+
+    <submit-button></submit-button>
+</div>
+
 @endsection
