@@ -13,7 +13,12 @@ class Userpoststable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('posts', function(Blueprint $table){
+            $table->bigInteger('msgid')->unique();
+            $table->string('sender_name');
+            $table->string('msg_content');
+            $table->timestamps('send_time');
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class Userpoststable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('posts');
     }
 }
