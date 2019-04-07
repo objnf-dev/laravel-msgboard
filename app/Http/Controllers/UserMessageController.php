@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class UserMessageController extends Controller
 {
-    //
+    public function pushmsg(){
+        
+    }
 }

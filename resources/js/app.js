@@ -5,29 +5,32 @@ import "ant-design-vue/dist/antd.css";
 Vue.use(Antd);
 
 // 各部分组件化
-var SubmitButton = Vue.component('msg-submit-button',{
-    template: '<a-button type="primary" id="submit-button">发送</a-button>'
-});
-
-var MsgInputField = Vue.component('msg-input',{
-    template: '<a-textarea placeholder="写下你想说的话吧！" :rows="10"/>'
+var MsgBoard = Vue.component('msg-submit-button',{
+    data(){
+        return {
+            MsgBoardStyle: {
+                'text-align': 'center',
+                'padding': '5% 10% 0 10%'
+            },
+            MsgSubmitButtonStyle: {
+                'margin': '5%'
+            },
+            usrmsgdata: ""
+        }
+    },
+    methods:{
+        sendmsg() {
+            this.$message.loading("正在发送中...", 3);
+        }
+    },
+    template: '<div v-bind:style="MsgBoardStyle"> <a-textarea placeholder="写下你想说的话吧！" :rows="10" v-model="usrmsgdata" /> <a-button type="primary" id="submit-button" v-bind:style="MsgSubmitButtonStyle" v-on:click="sendmsg">发送</a-button> </div>'
+    
 });
 
 // Vue入口点
 new Vue({
-    el: '#msg-board',
+    el: '#msgboard',
     components: {
-        'submit-button': SubmitButton,
-        'msg-input': MsgInputField
-    },
-    data: {
-        MsgBoardStyle: {
-            'text-align': 'center',
-            'padding': '5% 10% 0 10%'
-        },
-        MsgSubmitButtonStyle: {
-            'margin': '5%'
-        },
-        usermsgdata: {}
+        'msg-board':MsgBoard
     }
 });
