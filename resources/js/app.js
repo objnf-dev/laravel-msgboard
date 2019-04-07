@@ -27,6 +27,7 @@ new Vue({
         },
         MsgSubmitButtonStyle: {
             'margin': '5%'
-        }
+        },
+        usermsgdata: {}
     }
 });
