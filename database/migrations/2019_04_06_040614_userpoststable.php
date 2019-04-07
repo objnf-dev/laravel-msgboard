@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class Userpoststable extends Migration
 {
@@ -17,7 +18,7 @@ class Userpoststable extends Migration
             $table->bigInteger('msgid')->unique();
             $table->string('sender_name');
             $table->string('msg_content');
-            $table->timestamps('send_time');
+            $table->timestamp('send_time')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 
