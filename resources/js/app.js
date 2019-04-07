@@ -15,15 +15,19 @@ var MsgBoard = Vue.component('msg-submit-button',{
             MsgSubmitButtonStyle: {
                 'margin': '5%'
             },
-            usrmsgdata: ""
+            usrmsgdata: "",
+            msgUserName: ""
         }
     },
     methods:{
         sendmsg() {
-            this.$message.loading("正在发送中...", 3);
+            const msgSending = this.$message.loading("正在发送中...", 0);
+            
+            
         }
     },
-    template: '<div v-bind:style="MsgBoardStyle"> <a-textarea placeholder="写下你想说的话吧！" :rows="10" v-model="usrmsgdata" /> <a-button type="primary" id="submit-button" v-bind:style="MsgSubmitButtonStyle" v-on:click="sendmsg">发送</a-button> </div>'
+    template: '<div v-bind:style="MsgBoardStyle"> <a-textarea placeholder="写下你想说的话吧！" :rows="10" v-model="usrmsgdata" /> \
+               <a-button type="primary" id="submit-button" v-bind:style="MsgSubmitButtonStyle" v-on:click="sendmsg">发送</a-button> </div>'
     
 });
 

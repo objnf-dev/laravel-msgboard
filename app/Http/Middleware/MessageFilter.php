@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use HTMLPurifier_Config;
 
 class MessageFilter
 {
@@ -15,6 +16,11 @@ class MessageFilter
      */
     public function handle($request, Closure $next)
     {
+        
+        $anti_xss = HTMLPurifier_Config::createDefault();
+        $anti_xss -> set('HTML.Allowed', '');
+        $request = HTMLPurifier($request, $anti_xss);
+
         return $next($request);
     }
 }
