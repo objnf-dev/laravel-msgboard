@@ -75,4 +75,17 @@ return [
         //     'table' => 'users',
         // ],
     ],
+
+    'oauth' => [
+        'client1' => [
+            'type' => 'personal',
+            'id' => '1',
+            'secret' => 'Gd34SAyzOAHKpmMPha8SSCxSPqkcDUkpFeCIZBMf'
+        ],
+        'client2' => [
+            'type' => 'password',
+            'id' => '2',
+            'secret' => 'RgUCfdgfBnpr5vUZDCQ9cLx5v6XwwDe0pj0c305k'
+        ]
+    ]
 ];
