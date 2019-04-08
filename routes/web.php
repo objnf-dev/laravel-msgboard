@@ -13,11 +13,12 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth')->name('welcome');
 
 Auth::routes();
 
-Route::get('/admin', 'HomeController@index')->name('admin');
+Route::get('/all', 'HomeController@index')->name('all');
 
 Route::post('/msg', 'UserMessageController@pushmsg') -> middleware('msgfilter');
 Route::post('/get_token', 'OAuthProxy@get_access_code');
+

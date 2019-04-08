@@ -33,7 +33,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <a class="nav-link" href="{{route('welcome')}}">主页</a>
+                        <a class="nav-link" href="{{route('all')}}">所有留言</a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

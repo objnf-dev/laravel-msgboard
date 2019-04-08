@@ -2,14 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\EloquentUserProvider;
+use App\Hasher\Md5SaltHasher\Md5SaltHasher;
+use Illuminate\Support\ServiceProvider;
 
-class Md5SaltHashProvider extends EloquentUserProvider
+class Md5SaltHashProvider extends ServiceProvider
 {
-    public function __construct($hasher, $model)
-    {
-        parent::__construct($hasher, $model);
-    }
 
     /**
      * Register services.
@@ -28,7 +25,9 @@ class Md5SaltHashProvider extends EloquentUserProvider
      */
     public function boot()
     {
-
+        $this->app->singleton('hash', function (){
+            return new Md5SaltHasher();
+        });
     }
 
 }

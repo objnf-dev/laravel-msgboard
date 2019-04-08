@@ -10,7 +10,7 @@ var MsgBoard = Vue.component('msg-submit-button',{
         return {
             MsgBoardStyle: {
                 'text-align': 'center',
-                'padding': '5% 10% 0 10%'
+                'padding': '5% 25% 0 25%'
             },
             MsgSubmitButtonStyle: {
                 'margin': '5%'

@@ -18,8 +18,10 @@ class Md5SaltHasher implements Hasher{
     public function make($value, array $options = [])
     {
         $salt = $this->randomString(15);
-        $res = md5($value, $salt);
-        return $res."$".$salt;
+        $res1 = md5($value);
+        $res1 = $res1.$salt;
+        $res2 = md5($res1);
+        return $res2."$".$salt;
 
     }
 
@@ -30,9 +32,11 @@ class Md5SaltHasher implements Hasher{
 
     public function check($value, $hashedValue, array $options = [])
     {
-        $data = explode($value, "$");
-        $hash = md5($data[0],$data[1]);
-        if($hashedValue == $hash)
+        $data = explode("$", $hashedValue);
+        $res1 = md5($value);
+        $res1 = $res1.$data[1];
+        $res2 = md5($res1);
+        if($res2 == $data[0])
             return true;
         return false;
     }
