@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/admin', 'HomeController@index')->name('admin');
 
 Route::post('/msg', 'UserMessageController@pushmsg') -> middleware('msgfilter');
+Route::post('/get_token', 'OAuthProxy@get_access_code');
