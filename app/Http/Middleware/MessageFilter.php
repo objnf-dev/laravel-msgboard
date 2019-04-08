@@ -21,6 +21,7 @@ class MessageFilter
         $anti_xss -> set('HTML.Allowed', '');
         $request = HTMLPurifier($request, $anti_xss);
 
+
         return $next($request);
     }
 }

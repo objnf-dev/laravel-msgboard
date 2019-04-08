@@ -66,7 +66,8 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
+            // 'driver' => 'eloquent',
+            'driver' => 'md5salt',
             'model' => App\User::class,
         ],
 
