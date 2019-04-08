@@ -22,7 +22,11 @@ var MsgBoard = Vue.component('msg-submit-button',{
     methods:{
         sendmsg() {
             const msgSending = this.$message.loading("正在发送中...", 0);
-            
+            $.post("/msg", {
+                
+            }, function(){
+
+            });
             
         }
     },
