@@ -34,5 +34,15 @@ Route::post('/get_token', function (Request $request) {
 
     $respond = $client -> post($oauth_url, ["form_params" => $post_param]);
 
-    return $respond;
+    if($respond->getStatusCode() == 401)
+    {
+        return [
+            "status" => "false"
+        ];
+    }
+
+    return [
+        "status" => "true",
+        "data" => $respond->getBody()->getContents()
+    ];
 });
