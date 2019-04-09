@@ -18,7 +18,7 @@ class Userpoststable extends Migration
             $table->bigInteger('msgid')->unique();
             $table->string('sender_name');
             $table->string('msg_content');
-            $table->timestamp('send_time')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamp('send_time')->nullable();
         });
     }
 

@@ -5,7 +5,7 @@ import "ant-design-vue/dist/antd.css";
 Vue.use(Antd);
 
 // 各部分组件化
-var MsgBoard = Vue.component('msg-submit-button',{
+var MsgBoard = Vue.component('msg-board-comp',{
     data(){
         return {
             MsgBoardStyle: {
@@ -23,16 +23,20 @@ var MsgBoard = Vue.component('msg-submit-button',{
         sendmsg() {
             const msgSending = this.$message.loading("正在发送中...", 0);
             $.post("/msg", {
-                
+
             }, function(){
 
             });
-            
+
         }
     },
     template: '<div v-bind:style="MsgBoardStyle"> <a-textarea placeholder="写下你想说的话吧！" :rows="10" v-model="usrmsgdata" /> \
                <a-button type="primary" id="submit-button" v-bind:style="MsgSubmitButtonStyle" v-on:click="sendmsg">发送</a-button> </div>'
-    
+
+});
+
+var ShowAll = Vue.component('show-all-comp', {
+
 });
 
 // Vue入口点
@@ -42,3 +46,4 @@ new Vue({
         'msg-board':MsgBoard
     }
 });
+
