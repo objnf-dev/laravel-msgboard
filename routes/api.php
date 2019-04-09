@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,19 +19,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/get_token', function (Request $request) {
-    /*
+    $data = $request->only('email', 'password');
+
     $client = new Client();
     $oauth_url = request() -> root() . '/oauth/token';
     $post_param = [
-        'grant_type' => config('auth.oauth.client2.type'),
-        'client_id' => config('auth.oauth.client2.id'),
-        'client_secret' => config('auth.oauth.client2.secret'),
-        'scope' => '*',
-        'username' => $request['email'],
-        'password' => $request['password'],
+        "grant_type" => config('auth.oauth.client2.type'),
+        "client_id" => config('auth.oauth.client2.id'),
+        "client_secret" => config('auth.oauth.client2.secret'),
+        "scope" => "*",
+        "username" => $data['email'],
+        "password" => $data['password']
     ];
 
-    $respond = $client -> request('POST', $oauth_url, ['form_params' => $post_param]);
-    */
-    return $request->input('password');
+    $respond = $client -> post($oauth_url, ["form_params" => $post_param]);
+
+    return $respond;
 });
