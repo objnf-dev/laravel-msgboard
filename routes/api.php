@@ -16,3 +16,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/get_token', function (Request $request) {
+    /*
+    $client = new Client();
+    $oauth_url = request() -> root() . '/oauth/token';
+    $post_param = [
+        'grant_type' => config('auth.oauth.client2.type'),
+        'client_id' => config('auth.oauth.client2.id'),
+        'client_secret' => config('auth.oauth.client2.secret'),
+        'scope' => '*',
+        'username' => $request['email'],
+        'password' => $request['password'],
+    ];
+
+    $respond = $client -> request('POST', $oauth_url, ['form_params' => $post_param]);
+    */
+    return $request->input('password');
+});

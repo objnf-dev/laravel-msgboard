@@ -35,9 +35,7 @@ var MsgBoard = Vue.component('msg-board-comp',{
 
 });
 
-var ShowAll = Vue.component('show-all-comp', {
-
-});
+var ShowAll = Vue.component();
 
 // Vue入口点
 new Vue({

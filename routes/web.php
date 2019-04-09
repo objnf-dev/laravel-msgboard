@@ -20,5 +20,5 @@ Auth::routes();
 Route::get('/all', 'HomeController@index')->middleware('auth')->name('all');
 
 Route::post('/msg', 'UserMessageController@pushmsg') -> middleware('msgfilter');
-Route::post('/get_token', 'OAuthProxy@get_access_code') -> middleware('auth');
+
 
