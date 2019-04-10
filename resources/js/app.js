@@ -34,13 +34,12 @@ let MsgBoard = Vue.component('msg-board-comp',{
             window.axios.defaults.headers.common['Authorization'] = 'Bearer '+ AccessData;
             window.axios.default.post(window.location.href+"/api/push_msg", {
                     "data": this.usrmsgdata
-                }).then( function(){
-                    succeed=true;
-                    this.$message.success("发送成功", 3);
+                }).then( respond => {
+                    if(respond.status === 200)
+                        this.$message.success("发送成功", 3);
+                    else
+                        this.$message.error("发送失败", 3);
                 });
-            if(!succeed){
-                    this.$message.error("发送失败", 3);
-            }
         }
     },
     template: '<div v-bind:style="MsgBoardStyle"> <a-textarea placeholder="写下你想说的话吧！" :rows="10" v-model="usrmsgdata" /> \
