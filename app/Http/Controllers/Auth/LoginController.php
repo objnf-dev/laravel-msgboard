@@ -53,8 +53,8 @@ class LoginController extends Controller
         $accessToken = $res_data['access_token'];
         $refreshToken = $res_data['refresh_token'];
         $expireTime = (int)$res_data['expires_in'];
-        $cookie1 = Cookie::create('Authorization', $tokenType." ".$accessToken, $expireTime, '*', config("app.url"), false, true, false, null);
-        $cookie2 = Cookie::create('RefreshToken', $refreshToken, 0, "*", config("app.url"), false, true, false, null);
+        $cookie1 = Cookie::create('Authorization', $tokenType." ".$accessToken, time()+$expireTime, '/', null, false, true, false, null);
+        $cookie2 = Cookie::create('RefreshToken', $refreshToken, 0, "/", null, false, true, false, null);
         return redirect('/',302)->withCookies([
             $cookie1,
             $cookie2
