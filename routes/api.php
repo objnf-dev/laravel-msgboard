@@ -36,13 +36,14 @@ Route::post('/get_token', function (Request $request) {
 
     if($respond->getStatusCode() == 401)
     {
-        return [
+        $res = [
             "status" => "false"
         ];
+        return $res;
     }
-
-    return [
+    $res = [
         "status" => "true",
         "data" => $respond->getBody()->getContents()
     ];
+    return $res;
 });

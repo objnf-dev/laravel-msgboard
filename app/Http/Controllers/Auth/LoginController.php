@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use http\Cookie;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -28,13 +30,6 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
-
-    protected function authenticated(Request $request, $user)
-    {
-        $client = new Client();
-
-
-    }
 
     /**
      * Create a new controller instance.
