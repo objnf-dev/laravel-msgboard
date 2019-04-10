@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -53,12 +52,8 @@ class LoginController extends Controller
         $accessToken = $res_data['access_token'];
         $refreshToken = $res_data['refresh_token'];
         $expireTime = (int)$res_data['expires_in'];
-        $cookie1 = Cookie::create('Authorization', $tokenType." ".$accessToken, time()+$expireTime, '/', null, false, true, false, null);
-        $cookie2 = Cookie::create('RefreshToken', $refreshToken, 0, "/", null, false, true, false, null);
-        return redirect('/',302)->withCookies([
-            $cookie1,
-            $cookie2
-        ]);
+        setcookie('Authorization', $accessToken, time()+$expireTime, '/', null, false, false);
+        setcookie('RefreshToken', $refreshToken, 0, "/", null, false, true);
     }
 
     /**
