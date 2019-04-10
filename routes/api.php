@@ -18,32 +18,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/get_token', function (Request $request) {
-    $data = $request->only('email', 'password');
-
-    $client = new Client();
-    $oauth_url = request() -> root() . '/oauth/token';
-    $post_param = [
-        "grant_type" => config('auth.oauth.client2.type'),
-        "client_id" => config('auth.oauth.client2.id'),
-        "client_secret" => config('auth.oauth.client2.secret'),
-        "scope" => "*",
-        "username" => $data['email'],
-        "password" => $data['password']
-    ];
-
-    $respond = $client -> post($oauth_url, ["form_params" => $post_param]);
-
-    if($respond->getStatusCode() == 401)
-    {
-        $res = [
-            "status" => "false"
-        ];
-        return $res;
-    }
-    $res = [
-        "status" => "true",
-        "data" => $respond->getBody()->getContents()
-    ];
-    return $res;
-});
