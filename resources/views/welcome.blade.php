@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div id='msgboard'>
+    <div id='app'>
         <msg-board></msg-board>
     </div>
 

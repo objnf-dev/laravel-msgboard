@@ -4,7 +4,6 @@ import Antd from 'ant-design-vue';
 import "ant-design-vue/dist/antd.css";
 Vue.use(Antd);
 
-// 各部分组件化
 let MsgBoard = Vue.component('msg-board-comp',{
     data(){
         return {
@@ -23,6 +22,10 @@ let MsgBoard = Vue.component('msg-board-comp',{
         sendmsg() {
             let succeed=false;
             this.$message.loading("正在发送中...", 3);
+            if(this.usrmsgdata === ""){
+                this.$message.error("消息不能为空", 3);
+                return;
+            }
             let Cookies = document.cookie.split(';');
             let AccessData;
             for(let i=0;i<Cookies.length;i++){
@@ -47,13 +50,26 @@ let MsgBoard = Vue.component('msg-board-comp',{
 
 });
 
-let ShowAll = Vue.component();
+let ShowSended = Vue.component('show-sended-comp', {
+    template: '<a-card title="历史留言"> \
+                    <a-list class="msg-list" :loading="listLoading" itemLayout="horizontal" :dataSource="oldmsgdata"> \
+                        <div v-if="showLoadingMore" slot="loadMore" :style="{ textAlign: \'center\', marginTop: \'12px\', height: \'32px\', lineHeight: \'32px\' }"> \
+                            <a-spin v-if="loadingMore" /> \
+                            <a-button v-else @click="onLoadMore">加载更多</a-button> \
+                        </div> \
+                        \
+                    </a-list> \
+               </a-card> \
+    '
+});
 
 // Vue入口点
 new Vue({
-    el: '#msgboard',
+    el: '#app',
     components: {
-        'msg-board':MsgBoard
+        'msg-board':MsgBoard,
+        'show-sended': ShowSended
     }
 });
+
 

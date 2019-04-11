@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
-Route::middleware(['auth:api', 'msgfilter'])->group(function(){
+Route::middleware(['auth:api', 'auth', 'msgfilter'])->group(function(){
     Route::post('/push_msg', 'UserMessageController@pushmsg');
 });

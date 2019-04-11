@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use HTMLPurifier_Config;
+use HTMLPurifier;
 use Illuminate\Http\Request;
 
 class MessageFilter
@@ -21,10 +22,10 @@ class MessageFilter
         
         $anti_xss = HTMLPurifier_Config::createDefault();
         $anti_xss -> set('HTML.Allowed', '');
-        //$request = HTMLPurifier($data, $anti_xss);
+        $purifier = new HTMLPurifier($anti_xss);
+        $data2 = $purifier->purify($data);
 
-
-
+        $request->offsetSet('data', $data2);
         return $next($request);
     }
 }
