@@ -80,12 +80,12 @@ return [
         'client1' => [
             'type' => 'personal',
             'id' => 1,
-            'secret' => '002DHt5zvQlumhil97WVX09AHOd4Qg8Itw6PmT76'
+            'secret' => '9K7wL2sBsW69NVcLumRmIVGCgKUKkvmsTDcq5hhe'
         ],
         'client2' => [
             'type' => 'password',
             'id' => 2,
-            'secret' => '6rSdlEIHqeSrhYFpsHgVpCDcHL5LqNvBxEX14eqA'
+            'secret' => 'YUxjwgVBzohmWdKIWQqBjnrBB0iSJcN8nNXBFhSn'
         ]
     ]
 ];

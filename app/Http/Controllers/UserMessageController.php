@@ -12,8 +12,8 @@ class UserMessageController extends Controller
         $msgdata = $request->only('data')['data'];
         $uid = $request->only('user')['user'];
         $time = date('Y-m-d H:i:s');
-        $res = DB::insert('INSERT INTO posts(sender_id, msg_content, send_time) VALUES (?, ?, ?)', [$uid, $msgdata, $time]);
-        return response()->json($res);
+        $res = DB::insert('INSERT INTO posts(sender_id, msg_content, send_time) VALUES (?, ?, ?)', [$uid, base64_encode($msgdata), $time]);
+        return response()->json(['success' => $res]);
     }
 
     public function getmsg(Request $request)

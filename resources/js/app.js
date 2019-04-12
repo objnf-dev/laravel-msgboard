@@ -20,7 +20,6 @@ let MsgBoard = Vue.component('msg-board-comp',{
     },
     methods:{
         sendmsg() {
-            let succeed=false;
             this.$message.loading("正在发送中...", 3);
             if(this.usrmsgdata === ""){
                 this.$message.error("消息不能为空", 3);
