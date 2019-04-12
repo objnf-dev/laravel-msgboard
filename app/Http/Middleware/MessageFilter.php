@@ -6,6 +6,7 @@ use Closure;
 use HTMLPurifier_Config;
 use HTMLPurifier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageFilter
 {
@@ -26,6 +27,8 @@ class MessageFilter
         $data2 = $purifier->purify($data);
 
         $request->offsetSet('data', $data2);
+        $user = Auth::user();
+        $request->offsetSet('user', $user->getAuthIdentifier());
         return $next($request);
     }
 }

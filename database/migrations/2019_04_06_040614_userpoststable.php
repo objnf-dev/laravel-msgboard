@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
 
 class Userpoststable extends Migration
 {
@@ -15,10 +14,10 @@ class Userpoststable extends Migration
     public function up()
     {
         Schema::create('posts', function(Blueprint $table){
-            $table->bigInteger('msgid')->unique();
-            $table->string('sender_name');
-            $table->string('msg_content');
-            $table->timestamp('send_time')->nullable();
+            $table->bigInteger('msgid')->unique()->autoIncrement();
+            $table->bigInteger('sender_id');
+            $table->longText('msg_content');
+            $table->dateTime('send_time');
         });
     }
 

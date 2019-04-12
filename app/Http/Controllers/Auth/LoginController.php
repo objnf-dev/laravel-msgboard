@@ -48,7 +48,6 @@ class LoginController extends Controller
         }
         $res_data = json_decode($respond->getBody()->getContents(), true);
 
-        $tokenType = $res_data['token_type'];
         $accessToken = $res_data['access_token'];
         $refreshToken = $res_data['refresh_token'];
         $expireTime = (int)$res_data['expires_in'];
