@@ -50,7 +50,7 @@ let MsgBoard = Vue.component('msg-board-comp',{
 });
 
 let ShowSended = Vue.component('show-sended-comp', {
-    template: '<a-card title="历史留言"> \
+    template: '<a-card title="历史留言" style="margin: 5% 25% 0 25% "> \
                     <a-list class="msg-list" :loading="listLoading" itemLayout="horizontal" :dataSource="oldmsgdata"> \
                         <div v-if="showLoadingMore" slot="loadMore" :style="{ textAlign: \'center\', marginTop: \'12px\', height: \'32px\', lineHeight: \'32px\' }"> \
                             <a-spin v-if="loadingMore" /> \

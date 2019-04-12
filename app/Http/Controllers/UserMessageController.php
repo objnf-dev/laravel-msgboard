@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserMessageController extends Controller
@@ -18,6 +19,7 @@ class UserMessageController extends Controller
 
     public function getmsg(Request $request)
     {
+        $uid = Auth::user()->getAuthIdentifier();
 
     }
 }
