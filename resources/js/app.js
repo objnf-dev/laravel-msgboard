@@ -51,15 +51,29 @@ let MsgBoard = Vue.component('msg-board-comp',{
 
 let ShowSended = Vue.component('show-sended-comp', {
     template: '<a-card title="历史留言" style="margin: 5% 25% 0 25% "> \
-                    <a-list class="msg-list" :loading="listLoading" itemLayout="horizontal" :dataSource="oldmsgdata"> \
+                    <a-list class="msg-list" :loading="listLoading" itemLayout="horizontal" :dataSource="oldmsgdata" :locale="{\'emptyText\': \' 无内容 \'}"> \
                         <div v-if="showLoadingMore" slot="loadMore" :style="{ textAlign: \'center\', marginTop: \'12px\', height: \'32px\', lineHeight: \'32px\' }"> \
                             <a-spin v-if="loadingMore" /> \
                             <a-button v-else @click="onLoadMore">加载更多</a-button> \
                         </div> \
-                        \
+                        <a-list-item slot="renderItem" slot-scope="item, index"> \
+                            <a-list-item-meta> \
+                            <p slot="title">发布于 {{oldmsg.time}}</p> \
+                            <p slot="description">{{oldmsg.data}}</p> \
+                            </a-list-item-meta> \
+                        </a-list-item> \
                     </a-list> \
-               </a-card> \
-    '
+               </a-card> ',
+    data(){
+        return {
+            listLoading: true,
+            loadingMore: false,
+            showLoadingMore: true
+        }
+    },
+    methods: {
+
+    }
 });
 
 // Vue入口点
