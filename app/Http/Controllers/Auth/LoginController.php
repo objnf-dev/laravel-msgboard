@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -31,6 +32,14 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        $uid = Auth::user()->getAuthIdentifier();
+        $accessTokens = DB::select('SELECT id FROM oauth_access_tokens WHERE user_id = ?', [$uid]);
+        foreach ($accessTokens as $accessToken)
+        {
+            DB::delete('DELETE FROM oauth_access_tokens WHERE user_id = ?', [$uid]);
+            DB::delete('DELETE FROM oauth_refresh_tokens WHERE access_token_id = ?', [$accessToken->id]);
+        }
+
         $client = new Client();
         $send_data = [
             "grant_type" => config('auth.oauth.client2.type'),

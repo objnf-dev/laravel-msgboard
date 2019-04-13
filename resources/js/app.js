@@ -68,10 +68,14 @@ let ShowSended = Vue.component('show-sended-comp', {
         return {
             listLoading: true,
             loadingMore: false,
-            showLoadingMore: true
+            showLoadingMore: true,
+            oldmsgdata: []
         }
     },
     methods: {
+
+    },
+    mounted: {
 
     }
 });
