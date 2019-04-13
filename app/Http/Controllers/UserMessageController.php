@@ -20,6 +20,11 @@ class UserMessageController extends Controller
     public function getmsg(Request $request)
     {
         $uid = Auth::user()->getAuthIdentifier();
-
+        $msgdatas = DB::select('SELECT msg_content,send_time FROM posts WHERE sender_id = ?', [$uid]);
+        foreach ($msgdatas as $msgdata)
+        {
+            $msgdata->msg_content = base64_decode($msgdata->msg_content);
+        }
+        return response()->json($msgdatas);
     }
 }

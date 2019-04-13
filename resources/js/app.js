@@ -25,6 +25,7 @@ let MsgBoard = Vue.component('msg-board-comp',{
                 this.$message.error("消息不能为空", 3);
                 return;
             }
+
             let Cookies = document.cookie.split(';');
             let AccessData;
             for(let i=0;i<Cookies.length;i++){
@@ -34,6 +35,7 @@ let MsgBoard = Vue.component('msg-board-comp',{
                 }
             }
             window.axios.defaults.headers.common['Authorization'] = 'Bearer '+ AccessData;
+
             window.axios.default.post(window.location.href+"/api/push_msg", {
                     "data": this.usrmsgdata
                 }).then( respond => {
@@ -51,32 +53,42 @@ let MsgBoard = Vue.component('msg-board-comp',{
 
 let ShowSended = Vue.component('show-sended-comp', {
     template: '<a-card title="历史留言" style="margin: 5% 25% 0 25% "> \
-                    <a-list class="msg-list" :loading="listLoading" itemLayout="horizontal" :dataSource="oldmsgdata" :locale="{\'emptyText\': \' 无内容 \'}"> \
-                        <div v-if="showLoadingMore" slot="loadMore" :style="{ textAlign: \'center\', marginTop: \'12px\', height: \'32px\', lineHeight: \'32px\' }"> \
-                            <a-spin v-if="loadingMore" /> \
-                            <a-button v-else @click="onLoadMore">加载更多</a-button> \
-                        </div> \
-                        <a-list-item slot="renderItem" slot-scope="item, index"> \
-                            <a-list-item-meta> \
-                            <p slot="title">发布于 {{oldmsg.time}}</p> \
-                            <p slot="description">{{oldmsg.data}}</p> \
-                            </a-list-item-meta> \
-                        </a-list-item> \
+                    <a-list class="msg-list" itemLayout="horizontal" :dataSource="oldmsgdata" :locale="{\'emptyText\': \' 无内容 \'}"> \
+                            <a-list-item slot="renderItem" slot-scope="item, index"> \
+                                <a-list-item-meta> \
+                                <p slot="title">发布于 {{item.send_time}}</p> \
+                                <p slot="description">{{item.msg_content}}</p> \
+                                </a-list-item-meta> \
+                            </a-list-item> \
                     </a-list> \
                </a-card> ',
     data(){
         return {
-            listLoading: true,
-            loadingMore: false,
-            showLoadingMore: true,
             oldmsgdata: []
         }
     },
-    methods: {
-
+    mounted() {
+        this.getData((data) => {
+            this.oldmsgdata = data;
+        });
     },
-    mounted: {
+    methods: {
+        getData(callback){
+            let Cookies = document.cookie.split(';');
+            let AccessData;
+            for(let i=0;i<Cookies.length;i++){
+                let data_arr = Cookies[i].split('=');
+                if(data_arr[0].search('Authorization') !== -1){
+                    AccessData = data_arr[1];
+                }
+            }
+            window.axios.defaults.headers.common['Authorization'] = 'Bearer '+ AccessData;
 
+            window.axios.default.get(window.location.href.substring(0, window.location.href.length-4)+'/api/get_msg').then(respond => {
+                let data = respond.data;
+                callback(data)
+            })
+        }
     }
 });
 
